@@ -71,6 +71,7 @@ void* messageListener(void *arg) {
 			printf("\nIncoming message from %s: %s\n", msg.source, msg.msg);	
 			fprintf(stderr, "rsh>");	
 			fflush(stdout);
+			break;
 		}			
 	}
 	close(fd);	
