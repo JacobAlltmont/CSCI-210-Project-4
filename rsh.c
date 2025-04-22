@@ -65,7 +65,7 @@ void* messageListener(void *arg) {
 
 	while (1) {
 		int bytesRead = read(fd, &msg, sizeof(msg));
-		if (bytesRead > 0) {
+		if (bytesRead != sizeof(msg)) {
 			printf("\nIncoming message from %s: %s\n", msg.source, msg.msg);	
 			fprintf(stderr, "rsh>");	
 			fflush(stdout);
