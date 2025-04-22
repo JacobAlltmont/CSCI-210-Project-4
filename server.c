@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -28,14 +27,13 @@ int main() {
 	server = open("serverFIFO",O_RDONLY);
 	dummyfd = open("serverFIFO",O_WRONLY);
 
-	while (1) {
-		// TODO:
-		// read requests from serverFIFO
+	while (1) {										// TODO:
+	     // read requests from serverFIFO
 		int bytesRead = read(server, &req, sizeof(req));
 		if (bytesRead <= 0) continue;
-
+		
 		printf("Received a request from %s to send the message %s to %s.\n",req.source,req.msg,req.target);
-
+		
 		// TODO:
 		// open target FIFO and write the whole message struct to the target FIFO
 		// close target FIFO after writing the message
@@ -44,13 +42,10 @@ int main() {
 			perror("Could not open target FIFO");
 			continue;
 		}
-
-		write(target, &req, sizeof(req));
+																	write(target, &req, sizeof(req));
 		close(target);
-
-	}
+																															}
 	close(server);
 	close(dummyfd);
 	return 0;
 }
-
